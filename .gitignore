@@ -1,5 +1,5 @@
 #Temp Folder
-/chromadb
+/chromadb/*
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
