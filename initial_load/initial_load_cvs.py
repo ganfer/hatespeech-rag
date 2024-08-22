@@ -14,7 +14,7 @@ metadatas = df[['label', 'target']].to_dict(orient='records')
 ids = df['id'].astype(str).tolist()
 
 # Hinzufügen zur Chroma DB
-collection.add(
+collection.upsert(
     documents=documents,
     metadatas=metadatas,
     ids=ids,
