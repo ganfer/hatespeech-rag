@@ -47,9 +47,9 @@ This Python script combines the use of a language model (LLM) with a ChromaDB da
 
 Don`t forgt to use the other tools.
 
-- `**chroma query**`
+- `chroma_query.py`
 This script is designed to query the database and retrieve specific information based on user input.
-- `**chroma inspector**`
+- `chroma_inspector.py`
 This script provides an overview of your ChromaDB database, displaying the contents and the total number of documents stored.
 
 ## old
