@@ -19,7 +19,7 @@ collection.upsert(
 )
 
 results = collection.query(
-    query_texts=["Alle Anhänger des Islams sind ätzend!"],
+    query_texts=["Alle Anhänger des [Target] sind ätzend!"],
     n_results=1
 )
 
