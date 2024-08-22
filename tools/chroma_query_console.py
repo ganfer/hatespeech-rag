@@ -7,11 +7,10 @@ collection = chroma_client.get_or_create_collection(name="hatespeech")
 # Benutzer nach Eingabe fragen
 user_input = input("Bitte geben Sie einen Satz zum Suchen ein: ")
 
-# Query in ChromaDB mit der Benutzereingabe ausführen
+# Query in ChromaDB 
 results = collection.query(
-    query_texts=[user_input],  # Verwende die Benutzereingabe für die Query
-    n_results=1  # Anzahl der zurückzugebenden Ergebnisse
+    query_texts=[user_input],
+    n_results=1
 )
 
-# Ergebnisse anzeigen
 print(results)
