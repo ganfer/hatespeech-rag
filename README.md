@@ -10,8 +10,13 @@ pip install -r requirements/requirements.txt
 Ollama:
 ollama pull mannix/llama3.1-8b-abliterated
 
-## Create an initial load to chromadb
-Use the CSV or AI Script to update database
+Here’s a corrected version of your description:
+
+## Initial Load to ChromaDB
+
+Use one of the following scripts:
+- The `initial_load_csv.py` script imports the CSV file stored in `/data` to update the Chroma database.
+- The `initial_load_ai.py` script prompts Ollama to generate hate speech examples and updates the Chroma database.
 
 ## Run main.py
 
@@ -39,11 +44,15 @@ This Python script combines the use of a language model (LLM) with a ChromaDB da
    - The LLM's response is printed, and depending on the classification, the input is either stored in the database or ignored.
 
 ## Tools
+
 Don`t forgt to use the other tools.
+
 **chroma query**
 This script is designed to query the database and retrieve specific information based on user input.
 **chroma inspector**
 This script provides an overview of your ChromaDB database, displaying the contents and the total number of documents stored.
 
 ## old
-`main_v1.py` is the first edition of the script. The new main.py is fully updated to include database writeback functionality and integration with Llama 3.1.
+
+- `main_v1.py` is the first edition of the script. The new main.py is fully updated to include database writeback functionality and integration with Llama 3.1.
+- `chroma_query_v1.py` is the initial version of the query script. The latest version in /tools includes console input functionality.
