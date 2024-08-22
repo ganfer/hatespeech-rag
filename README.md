@@ -9,8 +9,7 @@ pip install -r requirements/requirements.txt
 
 Ollama:
 ollama pull mannix/llama3.1-8b-abliterated
-
-Here’s a corrected version of your description:
+> :warning: **Uncensored**: Please use uncensored versions of Llama, such as Mannix Llama 3.1; otherwise, this script will not function properly.
 
 ## Initial Load to ChromaDB
 
