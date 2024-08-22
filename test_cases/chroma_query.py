@@ -5,5 +5,4 @@ results = collection.query(
     query_texts=["Die haben kein Recht zu leben."],
     n_results=1
 )
-
 print(results)
