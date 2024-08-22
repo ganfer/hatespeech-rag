@@ -1,5 +1,6 @@
 import chromadb
 
+# ChromaDB-Client initialisieren
 chroma_client = chromadb.PersistentClient(path="./chromadb")
 collection = chroma_client.get_or_create_collection(name="hatespeech")
 
