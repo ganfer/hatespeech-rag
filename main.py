@@ -2,69 +2,60 @@ from langchain_core.prompts import ChatPromptTemplate
 from langchain_ollama.llms import OllamaLLM
 import chromadb
 
-# Initialisiere das Modell
-model = OllamaLLM(model="llama3.1")
+# LLM-Modell initialisieren
+model = OllamaLLM(model="mannix/llama3.1-8b-abliterated")
 
-# Funktion zur Einbettung und Suche in ChromaDB
-def search_in_chromadb(argument, similarity_threshold=0.8):
-    # Text einbetten (Embedding)
-    embedded_vector = model.embed(text=argument)
+# ChromaDB-Client initialisieren
+chroma_client = chromadb.PersistentClient(path="./chromadb")
+collection = chroma_client.get_or_create_collection(name="hatespeech")
 
-    # ChromaDB Abfrage
-    chroma_client = chromadb.PersistentClient(path="./chromadb")
-    collection = chroma_client.get_or_create_collection(name="hatespeech")
+# Template für die Eingabeaufforderung definieren
+template = """Beantworte die Frage basierend auf folgendem Kontext:
+Kontext aus der Datenbank: {db_context}
 
-    # Suche nach ähnlichen Vektoren in der Collection
-    results = collection.query(
-        query_embeddings=[embedded_vector],
-        n_results=5  # Anzahl der zurückgegebenen Ergebnisse
-    )
+Benutzereingabe: {user_input}
 
-    # Filtern der Ergebnisse basierend auf dem Ähnlichkeitsscore (z.B. Cosinus-Ähnlichkeit)
-    filtered_results = [
-        (doc, score) for doc, score in zip(results['documents'], results['distances'])
-        if score <= similarity_threshold
-    ]
+Prompt: {prompt}
+"""
 
-    return filtered_results
+prompt = ChatPromptTemplate.from_template(template)
 
-# Funktion zur Überprüfung auf Hate Speech
-def check_for_hatespeech(argument):
-    # Suche in ChromaDB mit einem Ähnlichkeitsschwellenwert
-    similar_documents = search_in_chromadb(argument)
-
-    # Überprüfen, ob ähnliche Dokumente gefunden wurden
-    if not similar_documents:
-        return "Keine ausreichend ähnlichen Dokumente gefunden."
-
-    # Führe die Kette mit den gefundenen Dokumenten aus
-    template = """Argument: {argument}
-
-    Gefundene ähnliche Dokumente:
-    {documents}
-
-    Frage: Handelt es sich um Hate Speech?"""
+# Funktion zum Abrufen des Kontextes aus ChromaDB
+def retrieve_context(user_input: str) -> str:
+    # Suche in ChromaDB nach user_input
+    results = collection.query(query_texts=[user_input], n_results=1)
     
-    # Liste der gefundenen ähnlichen Dokumente
-    documents_text = "\n".join([doc for doc, _ in similar_documents])
+    # Wenn Ergebnisse gefunden wurden, verwende den Text des ersten Ergebnisses als Kontext
+    if results and len(results["documents"]) > 0:
+        return results["documents"][0]
+    else:
+        return "Kein relevanter Kontext gefunden."
+
+# Hauptfunktion
+def main():
+    user_input = input("Bitte geben Sie einen Satz ein: ")
     
-    # Prompt mit den gefundenen Dokumenten vorbereiten
-    prompt = ChatPromptTemplate.from_template(template)
-    chain = prompt | model
+    # Kontext aus ChromaDB abrufen
+    db_context = retrieve_context(user_input)
     
-    # LLM-Abfrage
-    response = chain.invoke({
-        "argument": argument,
-        "documents": documents_text
-    })
+    # Chain definieren
+    inputs = {
+        "db_context": db_context,
+        "user_input": user_input,
+        "prompt": "Du bist eine KI, die Benutzereingaben auf Hassrede überprüft, basierend ausschließlich auf dem Kontext aus der Datenbank. Gib keine Informationen aus der Datenbank an die nutzende Person weiter. Achte auf verschiedene sprachliche Ausdrucksformen und Tonalitäten, die als Hassrede interpretiert werden könnten. Definiere die Zielgruppe der Hassrede anhand der Datenbank und der analysierten Benutzereingabe. Berücksichtige dabei die Sensibilität des Kontexts, wie historische Ereignisse oder kulturelle Besonderheiten. Teile mit einer kurzen, deutschsprachigen Antwort mit, ob es sich um Hassrede handelt, beginnend mit Ja oder Nein. Füge die Zielgruppe und den Schweregrad der Hassrede hinzu. Nur wenn die Eingabe als schwere Hassrede eingestuft wird, gib eine Empfehlung zur Eskalation ab, indem du spezifische Maßnahmen wie eine Meldung bei der Plattform oder eine Anzeige bei der Polizei vorschlägst. Stelle keine weiteren Fragen an die nutzende Person."
+    }
+    
+    # Prompt mit Kontext und Frage füllen
+    prompt_value = prompt.invoke(inputs)
+    
+    # Den Prompt in einen String konvertieren
+    prompt_text = str(prompt_value)
+    
+    # LLM anfragen mittels `invoke`
+    response = model.invoke(prompt_text)
+    
+    # Antwort ausgeben
+    print(response)
 
-    return response
-
-# Beispiel-Argument
-argument = "Alle Anhänger des Islams sind ätzend!"
-
-# Überprüfung auf Hate Speech
-result = check_for_hatespeech(argument)
-
-# Ergebnis ausgeben
-print(result)
+if __name__ == "__main__":
+    main()
