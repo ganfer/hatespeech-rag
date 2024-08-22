@@ -55,4 +55,4 @@ This script provides an overview of your ChromaDB database, displaying the conte
 ## old
 
 - `main_v1.py` is the first edition of the script. The new main.py is fully updated to include database writeback functionality and integration with Llama 3.1.
-- `chroma_query_v1.py` is the initial version of the query script. The latest version in /tools includes console input functionality.
+- `chroma_query_v1.py` is the initial version of the query script. The latest version in `/tools` includes console input functionality.
