@@ -2,19 +2,21 @@
 This RAG is designed to analyze user inputs for potential hate speech using a combination of a language model (LLM) and a ChromaDB database. The LLM evaluates the input against a curated database of hate speech entries, determining whether the input should be classified as such. If the input is identified as hate speech and sufficiently distinct from existing entries in the database, it is stored for future reference. The script also ensures that redundant entries are avoided, maintaining the efficiency and relevance of the database.
 
 ## Install the Requirements
+clone git and install ollama locally.
 
-Python
+Python:
 pip install -r requirements/requirements.txt
 
-Ollama
+Ollama:
 ollama pull mannix/llama3.1-8b-abliterated
 
-## Create a initial load.
+## Create an initial load to chromadb
 Use the CSV or AI Script to update database
 
-## run main.py
+## Run main.py
 
-This Python script combines the use of a language model (LLM) with a ChromaDB database to review user inputs for group-based hostility (hate speech) and, if applicable, store them.
+This Python script combines the use of a language model (LLM) with a ChromaDB database to review user inputs for group-based hostility (hate speech) and, if applicable, store them. This helps to expand the database with new, pertinent examples of hate speech while avoiding redundant or identical entries.
+
 
 #### Script Workflow:
 
@@ -36,9 +38,6 @@ This Python script combines the use of a language model (LLM) with a ChromaDB da
  **User Feedback:**
    - The LLM's response is printed, and depending on the classification, the input is either stored in the database or ignored.
 
-#### Purpose:
-The script is designed to assess user inputs for hate speech and, if recognized as relevant and new, store them in a database. This helps to expand the database with new, pertinent examples of hate speech while avoiding redundant or identical entries.
-
 ## Tools
 Don`t forgt to use the other tools.
 **chroma query**
@@ -47,4 +46,4 @@ This script is designed to query the database and retrieve specific information 
 This script provides an overview of your ChromaDB database, displaying the contents and the total number of documents stored.
 
 ## old
-`main_v1.py` is the first edition of the script, the new main is fully updated to include database writeback functionality and integration with Llama 3.1.
+`main_v1.py` is the first edition of the script. The new main.py is fully updated to include database writeback functionality and integration with Llama 3.1.
