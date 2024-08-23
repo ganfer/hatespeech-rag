@@ -1,6 +1,10 @@
 # hatespeech-rag
 This RAG is designed to analyze user inputs for potential hate speech using a combination of a language model (LLM) and a ChromaDB database. The LLM evaluates the input against a curated database of hate speech entries, determining whether the input should be classified as such. If the input is identified as hate speech and sufficiently distinct from existing entries in the database, it is stored for future reference. The script also ensures that redundant entries are avoided, maintaining the efficiency and relevance of the database.
 
+> [!NOTE]
+>  This repository was created as part of a master's thesis at IU Internationale Hochschule.
+
+
 ## Install the Requirements
 clone git and install ollama locally.
 
@@ -9,7 +13,8 @@ pip install -r requirements/requirements.txt
 
 Ollama:
 ollama pull mannix/llama3.1-8b-abliterated
-> :warning: **Attention**: Please use uncensored versions of Llama, such as Mannix Llama 3.1; otherwise, this script will not function properly.
+> [!IMPORTANT]
+> **Attention**: Please use uncensored versions of Llama, such as Mannix Llama 3.1; otherwise, this script will not function properly.
 
 ## Initial Load to ChromaDB
 
