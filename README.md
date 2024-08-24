@@ -49,6 +49,10 @@ This Python script using [LangChain](https://www.langchain.com/) combines the us
  **User Feedback:**
    - The LLM's response is printed, and depending on the classification, the input is either stored in the database or ignored.
 
+> [!NOTE]
+>  This script is designed in German, but it will function consistently regardless of the language. You are welcome to modify the prompts, user outputs, and other language-specific elements.
+     
+
 ## Tools
 
 Don`t forgt to have a look at the tools:
@@ -58,7 +62,7 @@ This script is designed to query the database and retrieve specific information 
 - `chroma_inspector.py`
 This script provides an overview of your ChromaDB database, displaying the contents and the total number of documents stored.
 
-## old
-
+## Old
+These scripts have been updated. I have kept the original versions in the `/old` folder because they were used during the writing of the thesis.
 - `main_v1.py` is the first edition of the script. The new main.py is fully updated to include database writeback functionality and integration with Llama 3.1.
 - `chroma_query_v1.py` is the initial version of the query script. The latest version in `/tools` includes console input functionality.

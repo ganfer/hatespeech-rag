@@ -1,0 +1,15 @@
+// This is a placeholder file. Please do an initial load for database first.
+//
+// Developers should delete this placeholder and create a new one by running the initial load script,
+// which can be found in the "scripts" directory (or specify the exact path) and requires 
+// appropriate permissions and environment variables to be set.
+//
+// Please refer to the project documentation for detailed instructions on 
+// database setup, required configurations, and data import processes.
+//
+// If any issues arise during the database initialization or if you encounter 
+// unexpected errors, please consult the development team or refer to the 
+// troubleshooting section of the documentation.
+//
+// Note: Do not commit this placeholder file to production unless it has been 
+// appropriately modified to meet the project's requirements.
