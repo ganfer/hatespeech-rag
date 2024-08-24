@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Llama gegen Hassrede</title>
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="hero">
+        <h1>Llama gegen Hassrede</h1>
+        <img src="{{ url_for('static', filename='images/llamaDestroyHatespeech.webp') }}" alt="Llama gegen Hassrede">
+  
+    </div>
+    
+
+    <div class="container">
+        <form id="inputForm" method="POST" onsubmit="return showLoadingPopup();">
+            <div class="mb-3">
+                <label for="user_input" class="form-label">Geben Sie einen Satz ein:</label>
+                <textarea name="user_input" id="user_input" class="form-control" rows="4" placeholder="Ihre Eingabe..." required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary">Überprüfen</button>
+        </form>
+
+        {% if response %}
+        <div id="responseContainer" class="result">
+            <h4>Ergebnis</h4>
+            <p><strong>Eingabe:</strong> <span id="userInputDisplay">{{ user_input }}</span></p>
+            <p><strong>Antwort des LLM:</strong> <span id="responseDisplay">{{ response }}</span></p>
+        </div>
+        <script>
+            document.getElementById('inputForm').reset();
+            if (window.history.replaceState) {
+                window.history.replaceState(null, null, window.location.pathname);
+            }
+        </script>
+        {% endif %}
+    </div>
+
+    <div id="loadingPopup">
+        <div class="spinner"></div>
+        Lädt...
+    </div>
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/5.3.0/js/bootstrap.min.js"></script>
+
+    <script>
+        function showLoadingPopup() {
+            document.getElementById('loadingPopup').style.display = 'flex';
+            return true;
+        }
+    </script>
+</body>
+</html>
