@@ -3,7 +3,7 @@ from langchain_ollama.llms import OllamaLLM
 import chromadb
 import uuid
 
-# Funktion zur Initialisierung des LLM-Modells
+# Initialize LLM Model
 def initialize_model():
     try:
         model = OllamaLLM(model="mannix/llama3.1-8b-abliterated")
@@ -12,17 +12,17 @@ def initialize_model():
         print(f"Error initializing LLM Model: {e}")
         return None
 
-# Funktion zur Initialisierung der ChromaDB
+# Initialize ChromaDB
 def initialize_chromadb():
     try:
-        chroma_client = chromadb.PersistentClient(path="./chromadb")
+        chroma_client = chromadb.PersistentClient(path="../../chromadb")
         collection = chroma_client.get_or_create_collection(name="hatespeech")
         return collection
     except Exception as e:
         print(f"Error initializing ChromaDB: {e}")
         return None
 
-# Vorlage für das LLM-Template initialisieren
+# Define template for the LLM
 def initialize_prompt_template():
     prompt_template = """Beantworte die Frage basierend auf folgendem Kontext:
     Kontext aus der Datenbank: {db_context}
@@ -38,7 +38,7 @@ def initialize_prompt_template():
         print(f"Error creating prompt template: {e}")
         return None
 
-# Kontext und Distanzen aus der ChromaDB abrufen
+# Function to retrieve context and distances from ChromaDB
 def retrieve_context_and_distances(user_input: str, collection):
     if collection:
         try:
@@ -48,7 +48,7 @@ def retrieve_context_and_distances(user_input: str, collection):
             print(f"Error retrieving context and distances: {e}")
     return None, None
 
-# Benutzereingabe in der ChromaDB speichern
+# Function to store user input in ChromaDB
 def store_user_input(user_input: str, collection):
     if collection:
         try:
@@ -56,13 +56,13 @@ def store_user_input(user_input: str, collection):
         except Exception as e:
             print(f"Error storing user input: {e}")
 
-# Benutzereingabe verarbeiten und eine Antwort generieren
+# Function to process the user input and generate a response
 def process_user_input(user_input: str, model, prompt, collection):
     db_contexts, distances = retrieve_context_and_distances(user_input, collection)
 
     try:
         if model and prompt:
-            # LLM aufrufen
+            # Invoke LLM
             response = model.invoke(str(prompt.invoke({
                 "db_context": db_contexts[0] if db_contexts else "Kein relevanter Kontext gefunden.",
                 "user_input": user_input,
@@ -75,7 +75,7 @@ def process_user_input(user_input: str, model, prompt, collection):
         response = "Es gab einen Fehler bei der Verarbeitung Ihrer Anfrage."
 
     if "Ja" in response:
-        # Nur speichern, wenn die Distanz klein genug ist (ähnlich, aber nicht identisch)
+        # Check if distances is not empty before using min()
         if not db_contexts or any(dist and min(dist) > 0.01 for dist in distances):
             store_user_input(user_input, collection)
 
