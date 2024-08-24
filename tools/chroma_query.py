@@ -1,10 +1,10 @@
 import chromadb
 
-# ChromaDB-Client initialisieren
+# Initialize ChromaDB
 chroma_client = chromadb.PersistentClient(path="./chromadb")
 collection = chroma_client.get_or_create_collection(name="hatespeech")
 
-# Benutzer nach Eingabe fragen
+# Ask user for Input
 user_input = input("Bitte geben Sie einen Satz zum Suchen ein: ")
 
 # Query in ChromaDB 
