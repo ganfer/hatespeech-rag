@@ -1,19 +1,21 @@
 # hatespeech-rag
+## Llama against Hate Speech!
 ![Picture of a Llama destroing hatespeech](/img/LlamaDestroyHatespeech.webp)
 
-This RAG is designed to analyze user inputs for potential hate speech using a combination of a large language model (LLM) and a ChromaDB database. The LLM evaluates the input against a curated database of hate speech entries, determining whether the input should be classified as such. If the input is identified as hate speech and sufficiently distinct from existing entries in the database, it is stored for future reference. The script also ensures that redundant entries are avoided, maintaining the efficiency and relevance of the database.
+This RAG is designed to analyze user inputs for potential hate speech using a combination of the large language model (LLM) [Llama](https://llama.meta.com/) and a [ChromaDB](https://www.trychroma.com/) database. The LLM evaluates the input against a curated database of hate speech entries, determining whether the input should be classified as such. If the input is identified as hate speech and sufficiently distinct from existing entries in the database, it is stored for future reference. The script also ensures that redundant entries are avoided, maintaining the efficiency and relevance of the database.
 
 > [!NOTE]
 >  This repository was created as part of a master's thesis at IU Internationale Hochschule.
 
 ## Install the Requirements
-clone git repository and install [Ollama](https://ollama.com/).
+clone this git repository and install [Ollama](https://ollama.com/).
 
-Python:
+**Python:**
 pip install -r requirements/requirements.txt
 
-Ollama:
+**Ollama:**
 ollama pull mannix/llama3.1-8b-abliterated
+
 > [!IMPORTANT]
 > **Attention**: Please use uncensored versions of Llama, such as Mannix Llama 3.1; otherwise, this script will not work properly.
 
@@ -25,7 +27,7 @@ Use one of the following scripts:
 
 ## Run main.py
 
-This Python script combines the use of a large language model with a Chroma database to review user inputs for group-based hostility (hate speech) and, if applicable, store them. This helps to expand the database with new, pertinent examples of hate speech while avoiding redundant or identical entries.
+This Python script using Using [LangChain](https://www.langchain.com/) combines the use of the large language model [Llama](https://llama.meta.com/) with a [ChromaDB](https://www.trychroma.com/) database to review user inputs for group-based hostility (hate speech) and, if applicable, store them. This helps to expand the database with new, pertinent examples of hate speech while avoiding redundant or identical entries.
 
 #### Script Workflow:
 
@@ -49,7 +51,7 @@ This Python script combines the use of a large language model with a Chroma data
 
 ## Tools
 
-Don`t forgt to use the other tools.
+Don`t forgt to have a look at the tools:
 
 - `chroma_query.py`
 This script is designed to query the database and retrieve specific information based on user input.
