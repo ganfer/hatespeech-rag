@@ -62,7 +62,7 @@ This script is designed to query the database and retrieve specific information 
 - `chroma_inspector.py`
 This script provides an overview of your ChromaDB database, displaying the contents and the total number of documents stored.
 
-## old
-
+## Old
+These scripts have been updated. I have kept the original versions in the `/old` folder because they were used during the writing of the thesis.
 - `main_v1.py` is the first edition of the script. The new main.py is fully updated to include database writeback functionality and integration with Llama 3.1.
 - `chroma_query_v1.py` is the initial version of the query script. The latest version in `/tools` includes console input functionality.
