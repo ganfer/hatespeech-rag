@@ -29,9 +29,6 @@ Use one of the following scripts:
 
 This Python script using [LangChain](https://www.langchain.com/) combines the use of the large language model [Llama](https://llama.meta.com/) with a [ChromaDB](https://www.trychroma.com/) database to review user inputs for group-based hostility (hate speech) and, if applicable, store them. This helps to expand the database with new, pertinent examples of hate speech while avoiding redundant or identical entries.
 
-> [!NOTE]
->  This script is designed in german language. Feel free to change.
-
 #### Script Workflow:
 
  **Initialization:**
@@ -51,6 +48,10 @@ This Python script using [LangChain](https://www.langchain.com/) combines the us
 
  **User Feedback:**
    - The LLM's response is printed, and depending on the classification, the input is either stored in the database or ignored.
+
+> [!NOTE]
+>  This script is designed in German, but it will function consistently regardless of the language. You are welcome to modify the prompts, user outputs, and other language-specific elements.
+     
 
 ## Tools
 
