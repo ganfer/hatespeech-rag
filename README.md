@@ -1,5 +1,5 @@
 # hatespeech-rag
-![Picture of a Llama destroing hatespeech](/data/LlamaDestroyHatespeech.webp)
+![Picture of a Llama destroing hatespeech](/img/LlamaDestroyHatespeech.webp)
 
 This RAG is designed to analyze user inputs for potential hate speech using a combination of a large language model (LLM) and a ChromaDB database. The LLM evaluates the input against a curated database of hate speech entries, determining whether the input should be classified as such. If the input is identified as hate speech and sufficiently distinct from existing entries in the database, it is stored for future reference. The script also ensures that redundant entries are avoided, maintaining the efficiency and relevance of the database.
 
