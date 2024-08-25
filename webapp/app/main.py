@@ -15,7 +15,7 @@ def initialize_model():
 # Initialize ChromaDB
 def initialize_chromadb():
     try:
-        chroma_client = chromadb.PersistentClient(path="../../chromadb")
+        chroma_client = chromadb.PersistentClient(path="./chromadb")
         collection = chroma_client.get_or_create_collection(name="hatespeech")
         return collection
     except Exception as e:
@@ -42,7 +42,7 @@ def initialize_prompt_template():
 def retrieve_context_and_distances(user_input: str, collection):
     if collection:
         try:
-            results = collection.query(query_texts=[user_input], n_results=5)
+            results = collection.query(query_texts=[user_input], n_results=1)
             return results["documents"], results["distances"] if results["documents"] else (None, None)
         except Exception as e:
             print(f"Error retrieving context and distances: {e}")
@@ -76,7 +76,7 @@ def process_user_input(user_input: str, model, prompt, collection):
 
     if "Ja" in response:
         # Check if distances is not empty before using min()
-        if not db_contexts or any(dist and min(dist) > 0.01 for dist in distances):
+        if not db_contexts or not distances or all(len(dist) == 0 for dist in distances) or any(dist and min(dist) > 0.01 for dist in distances):
             store_user_input(user_input, collection)
 
     return response
