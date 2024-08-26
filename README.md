@@ -32,9 +32,10 @@ Use one of the following scripts:
 - The `initial_load_csv.py` script imports the CSV file stored in `/data` to update the Chroma database.
 - The `initial_load_ai.py` script prompts Ollama to generate hate speech examples and updates the Chroma database.
 
-  ```bash
-  python initial_load_csv.py
-  ```
+Example:
+```bash
+python initial_load_csv.py
+```
 
 ## Run main.py
 
@@ -77,19 +78,15 @@ To use the WebApp you have to do following steps:
 
 ### 1. **Running the `run.py` Script**
 
-- Navigate to the `webapp` folder where `run.py` is located.
-- Open a terminal or command prompt.
-- Run the script by executing:
-
-  ```bash
-  python run.py
-  ```
-
-- This command will start the web application, and you should keep this terminal window open and running while you interact with the web interface.
+Navigate to the `webapp` folder where `run.py` is located and run the script by executing:
+ ```bash
+python run.py
+```
+This command will start the web application, and you should keep this terminal window open and running while you interact with the web interface.
 
 ### 2. **Using the Web Interface**
 
-- Once the `run.py` script is running, you can access the web application by opening a web browser and navigating to the appropriate URL, typically `http://localhost:5000`.
+Once the `run.py` script is running, you can access the web application by opening a web browser and navigating to the appropriate URL, typically `http://localhost:5000`.
 
 > [!NOTE]
 >  To make the WebApp suitable for production (available online), you have to meet all the requirements for a production environment, such as handling large traffic, managing sessions securely, and logging errors appropriately. Please think about a Reverse Proxy, too!
