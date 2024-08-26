@@ -11,10 +11,17 @@ This RAG is designed to analyze user inputs for potential hate speech using a co
 clone this git repository and install [Ollama](https://ollama.com/).
 
 **Python:**
-pip install -r requirements/requirements.txt
+
+  ```bash
+  pip install -r requirements/requirements.txt
+  ```
 
 **Ollama:**
-ollama pull mannix/llama3.1-8b-abliterated
+
+  ```bash
+  ollama pull mannix/llama3.1-8b-abliterated
+  ```
+
 
 > [!IMPORTANT]
 > **Attention**: Please use uncensored versions of Llama, such as Mannix Llama 3.1; otherwise, this script will not work properly.
@@ -24,6 +31,10 @@ ollama pull mannix/llama3.1-8b-abliterated
 Use one of the following scripts:
 - The `initial_load_csv.py` script imports the CSV file stored in `/data` to update the Chroma database.
 - The `initial_load_ai.py` script prompts Ollama to generate hate speech examples and updates the Chroma database.
+
+  ```bash
+  python initial_load_csv.py
+  ```
 
 ## Run main.py
 
@@ -81,7 +92,7 @@ To use the WebApp you have to do following steps:
 - Once the `run.py` script is running, you can access the web application by opening a web browser and navigating to the appropriate URL, typically `http://localhost:5000`.
 
 > [!NOTE]
->  To make the WebApp suitable for production (available online), you have to meets all the requirements for a production environment, such as handling large traffic, managing sessions securely, and logging errors appropriately. Please think about a reverse Proxy, too!
+>  To make the WebApp suitable for production (available online), you have to meet all the requirements for a production environment, such as handling large traffic, managing sessions securely, and logging errors appropriately. Please think about a Reverse Proxy, too!
 
 ## Tools
 
