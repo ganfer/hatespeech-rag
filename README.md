@@ -29,6 +29,10 @@ Use one of the following scripts:
 
 This Python script using [LangChain](https://www.langchain.com/) combines the use of the large language model [Llama](https://llama.meta.com/) with a [ChromaDB](https://www.trychroma.com/) database to review user inputs for group-based hostility (hate speech) and, if applicable, store them. This helps to expand the database with new, pertinent examples of hate speech while avoiding redundant or identical entries.
 
+  ```bash
+  python main.py
+  ```
+
 #### Script Workflow:
 
  **Initialization:**
@@ -51,7 +55,33 @@ This Python script using [LangChain](https://www.langchain.com/) combines the us
 
 > [!NOTE]
 >  This script is designed in German, but it will function consistently regardless of the language. You are welcome to modify the prompts, user outputs, and other language-specific elements.
-     
+
+## WebApp
+
+In `v1.0.3 - WebApp Support` there is a new WebApp!
+
+![Picture of Web App](/img/webapp.jpg)
+
+To use the WebApp you have to do following steps:
+
+### 1. **Running the `run.py` Script**
+
+- Navigate to the `webapp` folder where `run.py` is located.
+- Open a terminal or command prompt.
+- Run the script by executing:
+
+  ```bash
+  python run.py
+  ```
+
+- This command will start the web application, and you should keep this terminal window open and running while you interact with the web interface.
+
+### 2. **Using the Web Interface**
+
+- Once the `run.py` script is running, you can access the web application by opening a web browser and navigating to the appropriate URL, typically `http://localhost:5000`.
+
+> [!NOTE]
+>  To make the WebApp suitable for production (available online), you have to meets all the requirements for a production environment, such as handling large traffic, managing sessions securely, and logging errors appropriately. Please think about a reverse Proxy, too!
 
 ## Tools
 
