@@ -12,9 +12,9 @@ collection.upsert(
         "[Target] können das nicht richtig machen.", 
     ],
     metadatas=[
-        {"Label": " Hatespeech", "Target": "Ethnie"},
-        {"Label": " Hatespeech", "Target": "Religion"},
-        {"Label": " Hatespeech", "Target": "Geschlecht"},
+        {"Label": " Hatespeech", "Target": "Fremdenfeindlichkeit"},
+        {"Label": " Hatespeech", "Target": "Antisemitismus"},
+        {"Label": " Hatespeech", "Target": "Sexismus"},
     ],
     ids=["id1", "id2", "id3"]
 )
